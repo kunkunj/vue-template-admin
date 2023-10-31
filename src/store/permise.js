@@ -1,98 +1,74 @@
 import { defineStore } from 'pinia'
+import router from '@/router'
+import asyncRoutes from '@/router/routes'
+import { useAuth } from '@store/auth'
 
 export const usePermise = defineStore('permise', {
 	state: () => ({
-		menus: [
-			{
-				icon: 'index',
-				index: 'dashboard',
-				title: '首页'
-			},
-			{
-				icon: 'index',
-				index: 'table',
-				title: '基础表格'
-			},
-			{
-				icon: 'index',
-				index: 'tabs',
-				title: 'tab选项卡'
-			},
-			{
-				icon: 'index',
-				index: '3',
-				title: '表单相关',
-				subs: [
-					{
-						index: 'form',
-						title: '基本表单'
-					},
-					{
-						index: '3-2',
-						title: '三级菜单',
-						subs: [
-							{
-								index: 'editor',
-								title: '富文本编辑器'
-							},
-							{
-								index: 'markdown',
-								title: 'markdown编辑器'
-							}
-						]
-					},
-					{
-						index: 'upload',
-						title: '文件上传'
-					}
-				]
-			},
-			{
-				icon: 'index',
-				index: 'icon',
-				title: '自定义图标'
-			},
-			{
-				icon: 'index',
-				index: 'charts',
-				title: 'echart图表'
-			},
-			{
-				icon: 'index',
-				index: '6',
-				title: '拖拽组件',
-				subs: [
-					{
-						index: 'drag',
-						title: '拖拽列表'
-					},
-					{
-						index: 'dialog',
-						title: '拖拽弹框'
-					}
-				]
-			},
-			{
-				icon: 'index',
-				index: '7',
-				title: '错误处理',
-				subs: [
-					{
-						index: 'permission',
-						title: '权限测试'
-					},
-					{
-						index: '404',
-						title: '404页面'
-					}
-				]
-			}
-		]
+		menus: [],
+		routes: []
 	}),
 	actions: {
-        //根据menu生成路由
-		generateRoutersByMenu(router, asyncRoutes) {},
-        //根据角色值生成路由
-		generateRoutersByRole(role, asyncRoutes) {}
+		//根据menu生成路由
+		generateRoutersByMenu(menus, routes = asyncRoutes) {
+			return routes.filter((item) => {
+				if (item.children && item.children.length) {
+					item.children = this.generateRoutersByMenu(menus, item.children)
+				}
+				return this.routeInMenus(item, menus)
+			})
+		},
+		routeInMenus(route, menus) {
+			return !!menus.find((item) => {
+				if (item.subs && item.subs) {
+					return item.index == route.name || this.routeInMenus(route, item.subs)
+				}
+				return item.index == route.name
+			})
+		},
+		findRouteByMenu(menu, routes) {
+			return routes.find((item) => {
+				return item.name == menu.index
+			})
+		},
+		filterMenus(menus) {
+			return menus.map((item) => {
+				const obj = this.findRouteByMenu(item, router.getRoutes())
+				if (item.subs && item.subs.length) {
+					item.subs = this.filterMenus(item.subs)
+				}
+				return {
+					...item,
+					index:obj.path
+				}
+			})
+		},
+		setRouter(routes, name = 'home') {
+			routes.map((item) => {
+				router.addRoute(name, {
+					...item,
+					children: []
+				})
+				if (item.children && item.children.length) {
+					this.setRouter(item.children, item.name)
+				}
+			})
+		},
+		addRouter() {
+			if (this.routes && this.routes.length && this.menus && this.menus.length) {
+				this.setRouter(this.routes)
+				return Promise.resolve()
+			}
+			return new Promise((a) => {
+				const { getInfo } = useAuth()
+				getInfo().then((res) => {
+					this.routes = this.generateRoutersByMenu(res.menus)
+					this.setRouter(this.routes)
+					this.menus = this.filterMenus(res.menus)
+					console.log(this.menus)
+					a()
+				})
+			})
+		}
 	}
 })

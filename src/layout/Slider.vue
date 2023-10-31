@@ -7,6 +7,7 @@
 				:text-color="styles.fontColor"
 				:active-text-color="styles.activeFontColor"
 				unique-opened
+				router
 			>
 				<template v-for="(item, index) in items" :key="index">
 					<SubMenu :item="item" />

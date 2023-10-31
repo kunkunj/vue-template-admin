@@ -5,7 +5,6 @@ export default [
 		name: 'table',
 		meta: {
 			title: '表格',
-			role: 'admin'
 		},
 		component: () => import('@/views/table/index.vue')
 	},
@@ -13,8 +12,7 @@ export default [
 		path: '/tabs',
 		name: 'tabs',
 		meta: {
-			title: 'tabs选项卡',
-			role: 'admin'
+			title: 'tabs选项卡'
 		},
 		component: () => import('@/views/tabs/index.vue')
 	},
@@ -22,8 +20,7 @@ export default [
 		path: '/form',
 		name: 'form',
 		meta: {
-			title: '表单',
-			role: 'admin'
+			title: '表单'
 		},
 		component: Layout,
 		children: [
@@ -31,8 +28,7 @@ export default [
 				path: '/form/baseForm',
 				name: 'baseForm',
 				meta: {
-					title: '基本表单',
-          role:'admin'
+					title: '基本表单'
 				},
 				component: () => import('@/views/tabs/index.vue')
 			},
@@ -40,8 +36,7 @@ export default [
 				path: '/form/mk',
 				name: 'mk',
 				meta: {
-					title: '富文本',
-          role:'admin'
+					title: '富文本'
 				},
 				component: Layout,
 				children: [
@@ -49,8 +44,7 @@ export default [
 						path: '/form/mk/editor',
 						name: 'editor',
 						meta: {
-							title: '富文本编辑器',
-              role:'admin'
+							title: '富文本编辑器'
 						},
 						component: () => import('@/views/tabs/index.vue')
 					}
@@ -60,8 +54,7 @@ export default [
 				path: '/form/upload',
 				name: 'upload',
 				meta: {
-					title: '文件上传',
-          role:'admin'
+					title: '文件上传'
 				},
 				component: () => import('@/views/tabs/index.vue')
 			}

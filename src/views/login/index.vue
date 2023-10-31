@@ -23,7 +23,7 @@
 				}"
 				@click="login"
 			>
-				{{ loading ? 'login...' : 'login' }}
+				{{ loading ? '登 录 中...' : '登 录' }}
 			</el-button>
 		</div>
 	</div>
@@ -31,8 +31,10 @@
 
 <script setup>
 import { useAuth } from '@store/auth'
+import { usePermise } from '@store/permise'
 import { Loading } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
+import { removeToken } from '@/utils/token';
 const router = useRouter()
 const rules = ref({
 	username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
@@ -41,6 +43,7 @@ const rules = ref({
 const ruleFormRef = ref(null)
 const loading = ref(false)
 const { login: Login } = useAuth()
+const { addRouter } = usePermise()
 const ruleForm = reactive({
 	username: 'admin',
 	password: '123456'
@@ -56,6 +59,8 @@ const login = () => {
 		if (valid) {
 			loading.value = true
 			await Login(ruleForm)
+			addRouter()
+			// removeToken()
 			setTimeout(() => {
 				loading.value = false
 				router.push('/')
