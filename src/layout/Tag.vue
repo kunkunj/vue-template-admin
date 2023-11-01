@@ -31,5 +31,6 @@ const handleClose = (index) => {
 .tags {
 	height: 40px;
 	background: var(--main-tag-background-color);
+    border-bottom: 1px solid #EDEDED;
 }
 </style>

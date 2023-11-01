@@ -46,6 +46,7 @@ const styles = computed(() => {
 	padding: 20px 0;
 	width: @main-slider-width;
 	background-color: var(--main-head-background-color);
+	border-right: 1px solid #EDEDED;
 }
 ::v-deep(.el-menu){
 	border-right: none;

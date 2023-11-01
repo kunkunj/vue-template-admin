@@ -32,9 +32,7 @@
 <script setup>
 import { useAuth } from '@store/auth'
 import { usePermise } from '@store/permise'
-import { Loading } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
-import { removeToken } from '@/utils/token';
 const router = useRouter()
 const rules = ref({
 	username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
