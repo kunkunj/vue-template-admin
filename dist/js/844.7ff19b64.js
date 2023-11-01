@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue_manager"]=self["webpackChunkvue_manager"]||[]).push([[844],{2844:function(e,n,a){a.r(n),a.d(n,{default:function(){return o}});var l=a(3396),u={__name:"icon",setup(e){return(0,l.dl)((()=>{console.log(2,"table")})),(0,l.bv)((()=>{console.log(1,"table")})),(e,n)=>((0,l.wg)(),(0,l.iD)("div",null,"table"))}};const t=u;var o=t}}]);
+//# sourceMappingURL=844.7ff19b64.js.map

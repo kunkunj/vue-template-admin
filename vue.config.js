@@ -3,6 +3,7 @@ const path = require('path')
 const { resolve } = require('path')
 module.exports = defineConfig({
 	transpileDependencies: true,
+	publicPath:'./',
 	lintOnSave: false,
 	pluginOptions: {
 		'style-resources-loader': {

@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue_manager"]=self["webpackChunkvue_manager"]||[]).push([[134],{8134:function(e,n,u){u.r(n),u.d(n,{default:function(){return s}});var a=u(3396),r={__name:"index",setup(e){return(e,n)=>((0,a.wg)(),(0,a.iD)("div",null,"上传"))}};const t=r;var s=t}}]);
+//# sourceMappingURL=134.59cfe2d5.js.map

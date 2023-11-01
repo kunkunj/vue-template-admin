@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue_manager"]=self["webpackChunkvue_manager"]||[]).push([[168],{1168:function(e,n,u){u.r(n),u.d(n,{default:function(){return s}});var a=u(3396),r={__name:"index",setup(e){return(e,n)=>((0,a.wg)(),(0,a.iD)("div",null,"富文本"))}};const t=r;var s=t}}]);
+//# sourceMappingURL=168.b4ba8b2f.js.map
