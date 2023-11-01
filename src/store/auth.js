@@ -1,4 +1,4 @@
-import { getToken, setToken } from '@/utils/token'
+import { getToken, removeToken, setToken } from '@/utils/token'
 import { defineStore } from 'pinia'
 
 export const useAuth = defineStore('auth', {
@@ -17,6 +17,10 @@ export const useAuth = defineStore('auth', {
 				}
 			})
 		},
+		logout() {
+			removeToken()
+			location.href = location.origin
+		},
 		getInfo() {
 			return new Promise((resolve, reject) => {
 				resolve({
@@ -27,14 +31,14 @@ export const useAuth = defineStore('auth', {
 							title: '首页'
 						},
 						{
-							icon: 'index',
-							index: 'table',
-							title: '基础表格'
+							icon: 'icon',
+							index: 'icon',
+							title: '图标'
 						},
 						{
-							icon: 'index',
-							index: 'tabs',
-							title: 'tab选项卡'
+							icon: 'page',
+							index: 'page',
+							title: '隐藏页面'
 						},
 						{
 							icon: 'index',

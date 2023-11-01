@@ -1,20 +1,26 @@
 import Layout from '@/layout/Home.vue'
+/**
+ * @param title : 页签名称
+ * @param hidden : 是否隐藏（不显示在菜单栏）
+ * @param KeepAlive : 是否可缓存
+ */
 export default [
 	{
-		path: '/table',
-		name: 'table',
+		path: '/icon',
+		name: 'icon',
 		meta: {
-			title: '表格',
+			title: '图标',
+			KeepAlive:true
 		},
-		component: () => import('@/views/table/index.vue')
+		component: () => import('@/views/icon/icon.vue')
 	},
 	{
-		path: '/tabs',
-		name: 'tabs',
+		path: '/page',
+		name: 'page',
 		meta: {
-			title: 'tabs选项卡'
+			title: '隐藏页面'
 		},
-		component: () => import('@/views/tabs/index.vue')
+		component: () => import('@/views/page/page.vue')
 	},
 	{
 		path: '/form',
@@ -30,7 +36,7 @@ export default [
 				meta: {
 					title: '基本表单'
 				},
-				component: () => import('@/views/tabs/index.vue')
+				component: () => import('@/views/form/index.vue')
 			},
 			{
 				path: '/form/mk',
@@ -46,7 +52,7 @@ export default [
 						meta: {
 							title: '富文本编辑器'
 						},
-						component: () => import('@/views/tabs/index.vue')
+						component: () => import('@/views/editor/index.vue')
 					}
 				]
 			},
@@ -56,7 +62,7 @@ export default [
 				meta: {
 					title: '文件上传'
 				},
-				component: () => import('@/views/tabs/index.vue')
+				component: () => import('@/views/upload/index.vue')
 			}
 		]
 	}

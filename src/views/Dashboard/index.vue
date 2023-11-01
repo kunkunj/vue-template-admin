@@ -1,10 +1,20 @@
 <template>
-  <div>1</div>
+	<div> </div>
 </template>
 
-<script setup>
-import { ref, reactive, toRefs, onMounted} from 'vue'
+<script>
+import { defineComponent, onActivated, onMounted } from 'vue'
 
+export default defineComponent({
+	name: 'dashboard',
+	setup() {
+		onActivated(() => {
+			console.log(2)
+		})
+		onMounted(() => {
+			console.log(1)
+		})
+	}
+})
 </script>
-<style scoped lang="less">
-</style>
+<style scoped lang="less"></style>

@@ -2,10 +2,10 @@
 	<div class="head w-full flex justify-between items-center pl-4 pr-4">
 		<div class="app-name">后台管理系统</div>
 		<div class="flex items-center">
-			<el-select v-model="languge" size="small" class="mr-4 w-20" placeholder="请选择语言">
+			<!-- <el-select v-model="languge" size="small" class="mr-4 w-20" placeholder="请选择语言">
 				<el-option label="中文" value="1" />
 				<el-option label="英文" value="2" />
-			</el-select>
+			</el-select> -->
 			<el-switch
 				v-model="theme"
 				size="large"
@@ -29,7 +29,7 @@
 				</div>
 				<template #dropdown>
 					<el-dropdown-menu>
-						<el-dropdown-item>退出登录</el-dropdown-item>
+						<el-dropdown-item @click="logout">退出登录</el-dropdown-item>
 					</el-dropdown-menu>
 				</template>
 			</el-dropdown>
@@ -39,14 +39,19 @@
 
 <script setup>
 import { Sunny, Moon, ArrowDown } from '@element-plus/icons-vue'
-const theme = ref(false)
 import { useThemeStore } from '@store/useThemeStore'
+import { useAuth } from '@store/auth'
 
+const theme = ref(false)
 const themeStore = useThemeStore()
 const changeTheme = (val) => {
 	themeStore.setTheme(val ? 'light' : 'dark')
 }
 const languge = ref('1')
+const logout = () => {
+	const { logout } = useAuth()
+	logout()
+}
 </script>
 <style scoped lang="less">
 .head {

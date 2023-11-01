@@ -1,7 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '@/layout/Home.vue'
-import asyncRoutes from './routes'
-import { usePermise } from '@/store/permise'
 
 const routes = [
 	{
@@ -9,6 +7,10 @@ const routes = [
 		name: 'home',
 		component: Layout,
 		redirect: '/dashboard',
+		meta: {
+			title: '主页',
+			KeepAlive:true
+		},
 		children: [
 			{
 				path: '/dashboard',
@@ -21,7 +23,8 @@ const routes = [
 		path: '/login',
 		name: 'login',
 		meta: {
-			white: true
+			white: true,
+			title: '登录'
 		},
 		component: () => import('@/views/login/index.vue')
 	},

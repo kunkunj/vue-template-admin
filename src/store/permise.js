@@ -32,15 +32,13 @@ export const usePermise = defineStore('permise', {
 			})
 		},
 		filterMenus(menus) {
-			return menus.map((item) => {
+			return menus.filter((item) => {
 				const obj = this.findRouteByMenu(item, router.getRoutes())
 				if (item.subs && item.subs.length) {
 					item.subs = this.filterMenus(item.subs)
 				}
-				return {
-					...item,
-					index:obj.path
-				}
+				item.index = obj.path
+				return !obj.meta.hidden
 			})
 		},
 		setRouter(routes, name = 'home') {

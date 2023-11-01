@@ -1,8 +1,8 @@
 <template>
-  <div>sss</div>
+  <div>tabs</div>
 </template>
 
-<script setup>
+<script setup name="tables">
 import { ref, reactive, toRefs, onMounted} from 'vue'
 
 </script>

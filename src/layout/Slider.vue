@@ -47,4 +47,7 @@ const styles = computed(() => {
 	width: @main-slider-width;
 	background-color: var(--main-head-background-color);
 }
+::v-deep(.el-menu){
+	border-right: none;
+}
 </style>
