@@ -5,7 +5,7 @@
 			v-for="(item, index) in props.tagsList"
 			:key="item.path"
 			size="mini"
-            :type="route.name == item.name ? '' : 'info'"
+			:type="route.name == item.name ? '' : 'info'"
 			:closable="route.name == item.name"
 			@close="handleClose(index)"
 			@click="navTo(item)"
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { useRouter,useRoute } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
 const props = defineProps(['tagsList'])
@@ -30,6 +30,6 @@ const handleClose = (index) => {
 <style scoped lang="less">
 .tags {
 	height: 40px;
-	background: #ccccccc5;
+	background: var(--main-tag-background-color);
 }
 </style>
