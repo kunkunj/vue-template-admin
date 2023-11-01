@@ -1,6 +1,5 @@
 import { getToken, removeToken, setToken } from '@/utils/token'
 import { defineStore } from 'pinia'
-import router from '../router/index'
 
 export const useAuth = defineStore('auth', {
 	state: () => ({
@@ -20,7 +19,7 @@ export const useAuth = defineStore('auth', {
 		},
 		logout() {
 			removeToken()
-			router.replace('/login')
+			location.href = location.origin
 		},
 		getInfo() {
 			return new Promise((resolve, reject) => {
