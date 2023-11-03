@@ -33,7 +33,7 @@ const closeTag = (index) => {
 	if (tagsList.value.length == 1) {
 		return
 	}
-	router.replace(tagsList.value[index-1] ? tagsList.value[index-1].path : tagsList.value[index+1].path)
+	router.replace(tagsList.value[index-1].path)
 	tagsList.value.splice(index, 1)
 }
 const setTags = (val) => {

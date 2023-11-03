@@ -1,6 +1,6 @@
 import { getToken, removeToken, setToken } from '@/utils/token'
 import { defineStore } from 'pinia'
-import router from '../router/index'
+import { useRouter } from 'vue-router/dist/vue-router'
 
 export const useAuth = defineStore('auth', {
 	state: () => ({
@@ -20,6 +20,7 @@ export const useAuth = defineStore('auth', {
 		},
 		logout() {
 			removeToken()
+			const router = useRouter()
 			router.replace('/login')
 		},
 		getInfo() {
