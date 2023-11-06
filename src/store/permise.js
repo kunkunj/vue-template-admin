@@ -9,7 +9,6 @@ export const usePermise = defineStore('permise', {
 		routes: []
 	}),
 	actions: {
-		//根据menu生成路由
 		generateRoutersByMenu(menus, routes = asyncRoutes) {
 			return routes.filter((item) => {
 				if (item.children && item.children.length) {
@@ -34,6 +33,9 @@ export const usePermise = defineStore('permise', {
 		filterMenus(menus) {
 			return menus.filter((item) => {
 				const obj = this.findRouteByMenu(item, router.getRoutes())
+				if(!obj){
+					return false
+				}
 				if (item.subs && item.subs.length) {
 					item.subs = this.filterMenus(item.subs)
 				}

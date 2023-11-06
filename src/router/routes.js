@@ -18,7 +18,8 @@ export default [
 		path: '/page',
 		name: 'page',
 		meta: {
-			title: '隐藏页面'
+			title: '隐藏页面',
+			hidden:true
 		},
 		component: () => import('@/views/page/page.vue')
 	},
