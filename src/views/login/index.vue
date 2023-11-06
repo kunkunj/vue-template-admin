@@ -2,37 +2,38 @@
 	<div class="login overflow-hidden flex items-center">
 		<p id="wrap"></p>
 		<div class="login-box">
-			<div class="title">LOGIN</div>
+			<div class="title">{{t('login.name')}}</div>
 			<el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" status-icon>
-				<el-form-item prop="username">
-					<el-input size="large" placeholder="Please Input username" v-model="ruleForm.username" />
+				<el-form-item prop="username" :rules="{ required: true, message: t('login.rule_username'), trigger: 'blur' }">
+					<el-input size="large" :placeholder="t('login.username')" v-model="ruleForm.username" />
 				</el-form-item>
-				<el-form-item prop="password">
+				<el-form-item prop="password" :rules="{ required: true, message: t('login.rule_password'), trigger: 'blur' }">
 					<el-input
 						size="large"
 						type="password"
-						placeholder="Please Input password"
+						:placeholder="t('login.password')"
 						v-model="ruleForm.password"
 					/>
 				</el-form-item>
 			</el-form>
 			<el-button
-				class="btn flex justify-center items-center cursor-pointer"
-				:style="{
-					opacity: loading ? 0.8 : 1
-				}"
+				type="primary"
+				class="btn"
+				:loading="loading"
 				@click="login"
 			>
-				{{ loading ? '登 录 中...' : '登 录' }}
+				{{ loading ? t('login.btn1') : t('login.btn') }}
 			</el-button>
 		</div>
 	</div>
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
 import { useAuth } from '@store/auth'
 import { usePermise } from '@store/permise'
 import { useRouter } from 'vue-router'
+const { t } = useI18n()
 const router = useRouter()
 const rules = ref({
 	username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
@@ -104,18 +105,9 @@ const login = () => {
 	margin: 30px 0 20px;
 	letter-spacing: 2px;
 }
-.btn {
+.btn{
 	width: 100%;
-	height: 30px;
-	border-radius: 5px;
-	margin: 40px 0 0;
-	color: #fff;
-	font-size: 14px;
-	font-weight: bold;
-	background-color: rgb(64, 155, 255);
-}
-.btn:hover {
-	opacity: 0.95;
+	margin-top: 20px;
 }
 ::v-deep(.el-form-item.is-error .el-input__wrapper) {
 	box-shadow: 0 0 0 1px var(--el-input-border-color, var(--el-border-color)) inset;

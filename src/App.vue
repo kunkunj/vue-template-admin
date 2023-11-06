@@ -3,6 +3,7 @@
 </template>
 
 <style lang="less">
+
 @import url(./assets/css/main.less);
 
 @import url(./assets/css/dark.less);
@@ -14,4 +15,5 @@
 @tailwind components;
 
 @tailwind utilities;
+
 </style>

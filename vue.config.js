@@ -1,4 +1,5 @@
 const { defineConfig } = require('@vue/cli-service')
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 const path = require('path')
 const { resolve } = require('path')
 module.exports = defineConfig({
@@ -18,7 +19,8 @@ module.exports = defineConfig({
 				eslintrc: {
 					enabled: true // <-- this
 				}
-			})
+			}),
+			new NodePolyfillPlugin()
 		]
 	},
 	chainWebpack: (config) => {
