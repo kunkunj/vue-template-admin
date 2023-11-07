@@ -1,39 +1,61 @@
 <template>
 	<div class="login overflow-hidden flex items-center">
+		<div class="fixed top-3 right-3 text-white flex items-center">
+			<span
+				class="mr-3 cursor-pointer"
+				:style="{
+					color: locale == 'zn' ? '#28A7C0' : ''
+				}"
+				@click="setLang('zn')"
+				>中文</span
+			>
+			<span
+				class="cursor-pointer"
+				:style="{
+					color: locale == 'en' ? '#28A7C0' : ''
+				}"
+				@click="setLang('en')"
+				>English</span
+			>
+		</div>
 		<p id="wrap"></p>
 		<div class="login-box">
-			<div class="title">{{t('login.name')}}</div>
+			<div class="title">{{ $t('login.name') }}</div>
 			<el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" status-icon>
-				<el-form-item prop="username" :rules="{ required: true, message: t('login.rule_username'), trigger: 'blur' }">
-					<el-input size="large" :placeholder="t('login.username')" v-model="ruleForm.username" />
+				<el-form-item
+					prop="username"
+					:rules="{ required: true, message: $t('login.rule_username'), trigger: 'blur' }"
+				>
+					<el-input size="large" :placeholder="$t('login.username')" v-model="ruleForm.username" />
 				</el-form-item>
-				<el-form-item prop="password" :rules="{ required: true, message: t('login.rule_password'), trigger: 'blur' }">
+				<el-form-item
+					prop="password"
+					:rules="{ required: true, message: $t('login.rule_password'), trigger: 'blur' }"
+				>
 					<el-input
 						size="large"
 						type="password"
-						:placeholder="t('login.password')"
+						:placeholder="$t('login.password')"
 						v-model="ruleForm.password"
 					/>
 				</el-form-item>
 			</el-form>
-			<el-button
-				type="primary"
-				class="btn"
-				:loading="loading"
-				@click="login"
-			>
-				{{ loading ? t('login.btn1') : t('login.btn') }}
+			<el-button type="primary" class="btn" :loading="loading" @click="login">
+				{{ loading ? $t('login.btn1') : $t('login.btn') }}
 			</el-button>
 		</div>
 	</div>
 </template>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
 import { useAuth } from '@store/auth'
 import { usePermise } from '@store/permise'
 import { useRouter } from 'vue-router'
-const { t } = useI18n()
+import { useLang } from '@/store/lang'
+import { useI18n } from 'vue-i18n'
+const { locale } = useI18n()
+
+const { setLang } = useLang()
 const router = useRouter()
 const rules = ref({
 	username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
@@ -105,7 +127,7 @@ const login = () => {
 	margin: 30px 0 20px;
 	letter-spacing: 2px;
 }
-.btn{
+.btn {
 	width: 100%;
 	margin-top: 20px;
 }
