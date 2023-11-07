@@ -3,7 +3,7 @@
 </template>
 
 <script setup name="table">
-import { defineComponent, onActivated, onMounted } from 'vue'
+import { onActivated, onMounted } from 'vue'
 onActivated(() => {
 	console.log(2, 'table')
 })

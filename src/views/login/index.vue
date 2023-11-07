@@ -69,6 +69,7 @@ const ruleForm = reactive({
 	username: 'admin',
 	password: '123456'
 })
+
 onMounted(() => {
 	const p = document.getElementById('wrap')
 	p.innerText = Array(200)
