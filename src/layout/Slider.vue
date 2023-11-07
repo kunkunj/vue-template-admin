@@ -2,6 +2,7 @@
 	<div class="slider h-full overflow-auto">
 		<el-scrollbar>
 			<el-menu
+				:default-active="items[0].index"
 				:collapse="false"
 				:background-color="styles.bgColor"
 				:text-color="styles.fontColor"
